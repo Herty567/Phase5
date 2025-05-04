@@ -134,10 +134,8 @@ class Sender:
                     print(f"[S] <- ACK#{ack}  base->{self.base}  sampleRTT={sample:.3f}s  RTO={self.rto:.3f}s")
                     self.log_state()
 
-                    if self.base == self.next_seq:
-                        self.timer.cancel()
-                    else:
-                        self.start_timer()
+                    self.timer.cancel()
+                    self.start_timer()
 
                     # congestion control
                     if self.cwnd < self.ssthresh:
